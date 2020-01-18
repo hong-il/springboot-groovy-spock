@@ -7,8 +7,15 @@ import java.math.RoundingMode;
 
 @SpringBootTest
 public class CalculateTest {
+
+    private Long amount;
+
     public static long calculate(long amount , float rate, RoundingMode roundingMode) {
         return BigDecimal.valueOf(amount * rate * 0.01)
                 .setScale(0, roundingMode ).longValue();
+    }
+
+    public Long getAmount() {
+        return amount;
     }
 }

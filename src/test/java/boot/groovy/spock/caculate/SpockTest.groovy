@@ -45,4 +45,18 @@ class SpockTest extends Specification {
         then:
         throw new Exception("Negative number is not allowed")
     }
+
+    def "Mock - Verify that the decimal point of the amount is deleted"() {
+
+        given:
+        RoundingMode deleteDecimal = RoundingMode.DOWN;
+        def calculateTest = Mock(CalculateTest.class)
+
+        when:
+        long amount = calculateTest.getAmount()
+
+        then:
+        calculateTest.getAmount() >> 10000L
+        10L == CalculateTest.calculate(amount, 0.1f, deleteDecimal)
+    }
 }
