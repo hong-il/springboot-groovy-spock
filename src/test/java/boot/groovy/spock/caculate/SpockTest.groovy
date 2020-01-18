@@ -33,4 +33,16 @@ class SpockTest extends Specification {
         159L   | 0.15f | 0L
         2299L  | 0.15f | 3L
     }
+
+    def "Verify if an exception occurs when the negative number is inputted"() {
+
+        given:
+        RoundingMode deleteDecimal = RoundingMode.DOWN;
+
+        when:
+        CalculateTest.calculate(-10000L, 0.1f, deleteDecimal)
+
+        then:
+        throw new Exception("Negative number is not allowed")
+    }
 }
